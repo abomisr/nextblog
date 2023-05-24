@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 import { dropdownLinks } from "@constants";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const {data: session} = useSession();
 
   const [providers, setProviders] = useState<Record<string,any> | null>(null);
   const [dropdownOpened, setDropdownOpened] = useState(false)
@@ -27,12 +27,12 @@ const Nav = () => {
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
-        <Image src="/assets/images/logo.svg" alt="NextBlog Logo" width={30} height={30} className="object-contain" />
+        <Image src="/assets/images/logo.png" alt="NextBlog Logo" width={35} height={35} className="object-contain" />
         <p className="logo_text">NextBlog</p>
       </Link>
 
       <div className="sm:flex hidden">
-      {isUserLoggedIn ? 
+      {session?.user ? 
         <div className="flex gap-3 md:gap-5">
           <Link href="/new-prompt" className="black_btn">
             New Post
@@ -43,7 +43,7 @@ const Nav = () => {
           </button>
 
           <Link href={"/profile"}>
-            <Image src={`assets/images/logo.svg`} width={37} height={37} className="rounded-full" alt={`Profile`} />
+            <Image src={session.user.image || ""} width={37} height={37} className="rounded-full" alt={`Profile`} />
           </Link>
         </div>
         :
@@ -58,12 +58,12 @@ const Nav = () => {
       </div>
 
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? 
+        {session?.user ? 
         <div className="flex">
           <Image
             width={37}
             height={37}
-            src={`/assets/images/logo.svg`}
+            src={session.user.image || ""}
             className="rounded-full"
             alt="profile"
             onClick={toggleDropdown}
