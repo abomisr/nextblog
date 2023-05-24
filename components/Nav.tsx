@@ -72,7 +72,7 @@ const Nav = () => {
           {dropdownOpened && (
           <div className="dropdown">
             {dropdownLinks.map(link=>(
-              <Link href={link.href} className="dropdown_link" onClick={toggleDropdown}>
+              <Link href={link.href} key={link.href} className="dropdown_link" onClick={toggleDropdown}>
                 {link.title}
               </Link>
             ))}
