@@ -13,6 +13,8 @@ const RootLayout = ({children}:{children:JSX.Element})=>{
   return (
     <html lang="en">
       <body>
+      <Provider>
+        <>
         <div className="main">
           <div className="gradient" />
         </div>
@@ -21,6 +23,8 @@ const RootLayout = ({children}:{children:JSX.Element})=>{
           <Nav />
           {children}
         </main>
+        </>
+      </Provider>
       </body>
     </html>
   )
