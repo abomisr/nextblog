@@ -19,7 +19,7 @@ const NewPrompt = () => {
   async function newPrompt(e: FormDataEvent){
     e.preventDefault();
     setSubmitting(true);
-    
+
     try {
       const res = await fetch(`/api/prompt/new/`,{
         method: "POST",

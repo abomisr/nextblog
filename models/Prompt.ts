@@ -1,9 +1,9 @@
 import {Schema,model,models} from "mongoose";
 
 const PromptSchema = new Schema({
-    userId:{
+    publishedBy:{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
     },
     prompt:{
         type:String,

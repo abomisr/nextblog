@@ -9,7 +9,7 @@ export const POST = async (req:Request)=>{
         await connectToDB()
 
         const newPrompt = new Prompt({
-            userId,
+            publishedBy: userId,
             prompt,
             tag
         })
