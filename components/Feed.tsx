@@ -6,7 +6,7 @@ import PromptCard from "./PromptCard"
 import { PromptI } from "@types";
 
 
-const PromptCardList = ({data,handleTagClick}:{data:PromptI[],handleTagClick():void}) =>{
+const PromptCardList = ({data,handleTagClick}:{data:PromptI[],handleTagClick(promptTag:string):void}) =>{
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post:PromptI)=>(
@@ -31,6 +31,11 @@ const Feed = () => {
       regexp.test(p.tag) ||
       regexp.test(p.prompt)
     )
+  }
+
+  const handleTagClick = (promptTag:string) =>{
+    setSearchText(promptTag)
+    setSearchResults(filterPosts(promptTag))
   }
 
   const handleSearchChange = (e:ChangeEvent<HTMLInputElement>) =>{
@@ -62,9 +67,9 @@ const Feed = () => {
       </form>
 
       {searchText !== "" ? 
-      <PromptCardList data={searchResults} handleTagClick={()=> {}} />
+      <PromptCardList data={searchResults} handleTagClick={handleTagClick} />
       :
-      <PromptCardList data={posts} handleTagClick={()=> {}} />
+      <PromptCardList data={posts} handleTagClick={handleTagClick} />
       }
     </section>
   )
