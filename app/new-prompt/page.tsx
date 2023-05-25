@@ -13,8 +13,29 @@ const NewPrompt = () => {
     tag:'',
   })
 
-  async function newPrompt(e: FormDataEvent){
+  const session = useSession();
+  const router = useRouter();
 
+  async function newPrompt(e: FormDataEvent){
+    e.preventDefault();
+    setSubmitting(true);
+    
+    try {
+      const res = await fetch(`/api/prompt/new/`,{
+        method: "POST",
+        body: JSON.stringify({
+          ...post,
+          userId: session?.data?.user?.id
+        })
+      })
+
+      if(res.ok) router.push("/")
+    } catch (err) {
+      console.log(err);
+    } finally{
+      setSubmitting(false);
+      console.log(session)
+    }
   }
 
   return (
