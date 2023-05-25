@@ -34,7 +34,6 @@ const NewPrompt = () => {
       console.log(err);
     } finally{
       setSubmitting(false);
-      console.log(session)
     }
   }
 

@@ -14,7 +14,7 @@ const Profile = ({
       <p className="desc text-left">{desc}</p>
 
       <div className="mt-16 prompt_layout">
-        {data.map((post) => (
+        {data.length > 0 && data?.map((post:PromptI) => (
           <PromptCard key={post._id} post={post} handleEdit={()=> handleEdit && handleEdit(post)} handleDelete={()=> handleDelete && handleDelete(post)} />
         ))}
       </div>

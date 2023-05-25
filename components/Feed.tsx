@@ -17,11 +17,31 @@ const PromptCardList = ({data,handleTagClick}:{data:PromptI[],handleTagClick():v
 }
 
 const Feed = () => {
-  const [searchText, setSearchText] = useState('')
   const [posts, setPosts] = useState([])
-  
+
+  const [searchText, setSearchText] = useState('')
+  const [searchTimeOut, setSearchTimeOut] = useState<any>(null)
+  const [searchResults, setSearchResults] = useState([])
+
+  const filterPosts = (searchText:string) =>{
+    const regexp = new RegExp(searchText, "i") 
+
+    return posts.filter((p)=>
+      regexp.test(p.publishedBy.username) ||
+      regexp.test(p.tag) ||
+      regexp.test(p.prompt)
+    )
+  }
+
   const handleSearchChange = (e:ChangeEvent<HTMLInputElement>) =>{
     setSearchText(e.target.value)
+
+    setSearchTimeOut(
+      setTimeout(() => {
+        setSearchResults(filterPosts(e.target.value))
+      }, 500)
+    )
+
   }
 
   useEffect(()=>{
@@ -37,11 +57,15 @@ const Feed = () => {
 
   return (
     <section className="feed">
-      <form className="relative w-full flex-center">
+      <form className="relative w-full flex-center" onSubmit={(e)=>e.preventDefault()}>
         <input type="text" placeholder="Search for a tag or a username" value={searchText} onChange={handleSearchChange} className="peer search_input" />
       </form>
 
+      {searchText !== "" ? 
+      <PromptCardList data={searchResults} handleTagClick={()=> {}} />
+      :
       <PromptCardList data={posts} handleTagClick={()=> {}} />
+      }
     </section>
   )
 }

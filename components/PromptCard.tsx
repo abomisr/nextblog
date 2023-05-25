@@ -4,12 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
 
 
 const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
   const [copied, setCopied] = useState(false)
-  const {data:session} = useSession();
+  const {data:session}:any = useSession();
   const pathName = usePathname();
 
 
@@ -51,7 +50,7 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
       </div>
 
       <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-      <p className="font-inter text-sm blue_gradient cursor-pointer" onClick={()=> handleTagClick && handleTagClick(post.tag)}>{post.tag}</p>
+      <p className="font-inter text-sm blue_gradient cursor-pointer" onClick={()=> handleTagClick && handleTagClick(post.tag)}>#{post.tag}</p>
 
       {
         session?.user.id === post.publishedBy._id && pathName === "/profile" && (
