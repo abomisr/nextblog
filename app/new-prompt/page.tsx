@@ -13,7 +13,7 @@ const NewPrompt = () => {
     tag:'',
   })
 
-  const session = useSession();
+  const {data:session}:any = useSession();
   const router = useRouter();
 
   async function newPrompt(e: FormDataEvent){

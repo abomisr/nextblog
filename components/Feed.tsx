@@ -26,7 +26,7 @@ const Feed = () => {
   const filterPosts = (searchText:string) =>{
     const regexp = new RegExp(searchText, "i") 
 
-    return posts.filter((p)=>
+    return posts.filter((p:PromptI)=>
       regexp.test(p.publishedBy.username) ||
       regexp.test(p.tag) ||
       regexp.test(p.prompt)
