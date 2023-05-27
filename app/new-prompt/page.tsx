@@ -29,7 +29,7 @@ const NewPrompt = () => {
         })
       })
 
-      if(res.ok) router.push("/")
+      if(res.ok) router.push("/profile")
     } catch (err) {
       console.log(err);
     } finally{
