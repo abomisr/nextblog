@@ -14,14 +14,14 @@ const MyProfile = () => {
     const router = useRouter();
 
 
+    const fetchPosts = async () => {
+        const res = await fetch(`/api/users/${session?.user?.id}/posts`);
+        const data = await res.json();
+
+        setPosts(data)
+    }
+
     useEffect(() => {
-        const fetchPosts = async () => {
-            const res = await fetch(`api/users/${session?.user.id}/posts`);
-            const data = await res.json();
-
-            setPosts(data)
-        }
-
         fetchPosts()
     }, [])
 

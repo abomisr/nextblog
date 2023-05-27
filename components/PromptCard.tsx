@@ -24,15 +24,15 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
-        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer" onClick={()=>router.push(`/profile/${post.publishedBy._id}?username=${post.publishedBy.username}`)}>
-        <Image src={post.publishedBy.picture} alt={`${post.publishedBy.username} pic`} width={40} height={40} className="rounded-full object-contain" />
+        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer" onClick={()=>router.push(`/profile/${post.publishedBy?._id}?username=${post.publishedBy?.username}`)}>
+        <Image src={post.publishedBy?.picture} alt={`${post.publishedBy?.username} pic`} width={40} height={40} className="rounded-full object-contain" />
 
         <div className="flex flex-col">
           <h3 className="font-satoshi font-semibold text-gray-900">
-            {post.publishedBy.username}
+            {post.publishedBy?.username}
           </h3>
 
-          <p className="font-inter text-sm text-gray-500">{post.publishedBy.email}</p>
+          <p className="font-inter text-sm text-gray-500">{post.publishedBy?.email}</p>
         </div>
         </div>
 
@@ -54,7 +54,7 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
       <p className="font-inter text-sm blue_gradient cursor-pointer" onClick={()=> handleTagClick && handleTagClick(post.tag)}>#{post.tag}</p>
 
       {
-        session?.user.id === post.publishedBy._id && pathName === "/profile" && (
+        session?.user.id === post.publishedBy?._id && pathName === "/profile" && (
           <div className="mt-5 flex-center gap-4 border-t border-gray-200 pt-3">
             <button className="green_gradient cursor-pointer font-inter text-sm" onClick={handleEdit}>Edit</button>
             <button className="orange_gradient cursor-pointer font-inter text-sm" onClick={handleDelete}>Delete</button>
