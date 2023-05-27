@@ -1,4 +1,3 @@
-import { AnyARecord } from "dns"
 import PromptCard from "./PromptCard"
 import { PromptI } from "@types"
 

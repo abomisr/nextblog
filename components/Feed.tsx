@@ -39,7 +39,8 @@ const Feed = () => {
   }
 
   const handleSearchChange = (e:ChangeEvent<HTMLInputElement>) =>{
-    setSearchText(e.target.value)
+    setSearchText(e.target.value);
+    clearTimeout(searchTimeOut);
 
     setSearchTimeOut(
       setTimeout(() => {
