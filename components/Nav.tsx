@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 import { dropdownLinks } from "@constants";
 
 const Nav = () => {
-  const {data: session} = useSession();
+  const {data: session}:any = useSession();
 
   const [providers, setProviders] = useState<Record<string,any> | null>(null);
   const [dropdownOpened, setDropdownOpened] = useState(false)
