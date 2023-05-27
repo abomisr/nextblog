@@ -13,7 +13,7 @@ const NewPrompt = () => {
     tag:'',
   })
 
-  const {data:session}:any = useSession();
+  const session:any = useSession();
   const router = useRouter();
 
   async function newPrompt(e: FormDataEvent){
@@ -25,7 +25,7 @@ const NewPrompt = () => {
         method: "POST",
         body: JSON.stringify({
           ...post,
-          userId: session?.data?.user?.id
+          userId: session?.data?.user.id
         })
       })
 
